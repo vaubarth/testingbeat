@@ -1,11 +1,13 @@
 # Testingbeat
 
-Welcome to Testingbeat.
+Testingbeat allows reading test result files (e.g. Junit xml files) and send them to elasticsearch.
+
+This is a placeholder
+
+## Building Testingbeat
 
 Ensure that this folder is at the following location:
 `${GOPATH}/src/github.com/vaubarth/testingbeat`
-
-## Getting Started with Testingbeat
 
 ### Requirements
 

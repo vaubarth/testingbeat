@@ -3689,15 +3689,159 @@ alias to: process.executable
 None
 
 
-*`counter`*::
+*`name`*::
 +
 --
-PLEASE UPDATE DOCUMENTATION
-
-
-type: long
+type: text
 
 required: True
+
+--
+
+*`duration`*::
++
+--
+type: float
+
+required: True
+
+--
+
+*`classname`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`skipped`*::
++
+--
+type: boolean
+
+required: True
+
+--
+
+*`failed`*::
++
+--
+type: boolean
+
+required: True
+
+--
+
+*`success`*::
++
+--
+type: boolean
+
+required: True
+
+--
+
+*`stdout`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`stderr`*::
++
+--
+type: text
+
+required: True
+
+--
+
+
+*`metadata.runid`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`metadata.environment`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`metadata.project`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`metadata.link`*::
++
+--
+type: text
+
+required: True
+
+--
+
+
+*`suite.duration`*::
++
+--
+type: float
+
+required: True
+
+--
+
+*`suite.name`*::
++
+--
+type: text
+
+required: True
+
+--
+
+
+*`failure.type`*::
++
+--
+type: text
+
+required: False
+
+--
+
+*`failure.title`*::
++
+--
+type: text
+
+required: False
+
+--
+
+*`failure.body`*::
++
+--
+type: text
+
+required: False
 
 --
 

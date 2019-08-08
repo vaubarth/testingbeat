@@ -3,12 +3,36 @@
 
 package config
 
-import "time"
+import (
+	"math/rand"
+	"time"
+)
+
+func getRandomId() string {
+	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	bytes := make([]byte, 10)
+	for i := range bytes {
+		bytes[i] = charset[seededRand.Intn(len(charset))]
+	}
+	return string(bytes)
+}
 
 type Config struct {
-	Period time.Duration `config:"period"`
+	Path        string `config:"path"`
+	Type        string `config:"type"`
+	RunId       string `config:"runid"`
+	Environment string `config:"environment"`
+	Project     string `config:"project"`
+	Link        string `config:"link"`
 }
 
 var DefaultConfig = Config{
-	Period: 1 * time.Second,
+	Path:        ".",
+	Type:        "junit",
+	RunId:       getRandomId(),
+	Environment: "",
+	Project:     "",
+	Link:        "",
 }

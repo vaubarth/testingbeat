@@ -3,8 +3,12 @@
 ############################# Testingbeat ######################################
 
 testingbeat:
-  # Defines how often an event is sent to the output
-  period: 1s
+  path: .
+  type: junit
+  runid:
+  environment:
+  project:
+  link:
 
 #================================ General =====================================
 

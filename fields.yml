@@ -2423,8 +2423,66 @@
   title: testingbeat
   description:
   fields:
-    - name: counter
-      type: long
+    - name: name
+      type: text
       required: true
-      description: >
-        PLEASE UPDATE DOCUMENTATION
+    - name: duration
+      type: float
+      required: true
+    - name: classname
+      type: text
+      required: true
+    - name: skipped
+      type: boolean
+      required: true
+    - name: failed
+      type: boolean
+      required: true
+    - name: success
+      type: boolean
+      required: true
+    - name: stdout
+      type: text
+      required: true
+    - name: stderr
+      type: text
+      required: true
+
+    - name: metadata
+      type: group
+      fields:
+        - name: runid
+          type: text
+          required: true
+        - name: environment
+          type: text
+          required: true
+        - name: project
+          type: text
+          required: true
+        - name: link
+          type: text
+          required: true
+
+    - name: suite
+      type: group
+      fields:
+        - name: duration
+          type: float
+          required: true
+        - name: name
+          type: text
+          required: true
+
+    - name: failure
+      type: group
+      fields:
+        - name: type
+          type: text
+          required: false
+        - name: title
+          type: text
+          required: false
+        - name: body
+          type: text
+          required: false

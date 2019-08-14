@@ -101,8 +101,6 @@ func (bt *Testingbeat) send(b *beat.Beat, result []TestResult) {
 				"skipped":   value.Skipped,
 				"failed":    value.Failed,
 				"success":   value.Success,
-				"stderr":    value.StdErr,
-				"stdout":    value.StdOut,
 				"metadata": common.MapStr{
 					"runid":       bt.config.RunId,
 					"environment": bt.config.Environment,
@@ -112,6 +110,8 @@ func (bt *Testingbeat) send(b *beat.Beat, result []TestResult) {
 				"suite": common.MapStr{
 					"duration": value.Suite.Duration,
 					"name":     value.Suite.Name,
+					"stderr":   value.Suite.StdErr,
+					"stdout":   value.Suite.StdOut,
 				},
 				"failure": common.MapStr{
 					"type":  value.Failure.Type,

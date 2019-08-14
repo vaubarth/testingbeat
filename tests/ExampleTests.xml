@@ -8,21 +8,15 @@
 
     </testcase>
     <testcase classname="org.tests.TestCase"
-              name="is created in 1 zone with 1 node of 1024 capacity each then indexing and searching of data works as expected"
-              time="6.946">
-
-    </testcase>
-    <testcase classname="org.tests.TestCase"
               name="This test FAILED in 4.974 seconds"
               time="4.974">
         <failure message="1 is not 2"
                  type="org.scalatest.exceptions.TestFailedException">
-            Body text
-            Probably stacktrace
-            ...
-            ...
-            ...
-        </failure>
+Body text
+Probably stacktrace
+...
+...
+...</failure>
     </testcase>
     <testcase classname="org.tests.TestCase"
               name="This test was SKIPPED in 1.115 seconds"
@@ -30,6 +24,6 @@
         <skipped/>
     </testcase>
 
-    <system-out><![CDATA[]]></system-out>
-    <system-err><![CDATA[]]></system-err>
+    <system-out>sys out</system-out>
+    <system-err>sys err</system-err>
 </testsuite>

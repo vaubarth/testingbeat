@@ -8,14 +8,14 @@ type TestResult struct {
 	Skipped   bool
 	Failed    bool
 	Success   bool
-	StdOut    string
-	StdErr    string
 	Failure   Failure
 }
 
 type Suite struct {
 	Name     string
 	Duration float64
+	StdOut   string
+	StdErr   string
 	Metadata []Metadata
 }
 

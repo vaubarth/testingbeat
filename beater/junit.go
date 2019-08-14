@@ -59,6 +59,8 @@ func (junitResult JunitTestSuite) makeJunitReport() []TestResult {
 			Suite: Suite{
 				Name:     junitResult.Name,
 				Duration: junitResult.Duration,
+				StdOut:   junitResult.StdOut,
+				StdErr:   junitResult.StdErr,
 			},
 			Name:      test.Name,
 			Classname: test.Classname,
@@ -66,8 +68,6 @@ func (junitResult JunitTestSuite) makeJunitReport() []TestResult {
 			Skipped:   false,
 			Failed:    false,
 			Success:   false,
-			StdOut:    junitResult.StdOut,
-			StdErr:    junitResult.StdErr,
 			Failure: Failure{
 				Title: test.Failure.Message,
 				Type:  test.Failure.Type,

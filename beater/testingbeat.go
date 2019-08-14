@@ -1,7 +1,6 @@
 package beater
 
 import (
-	"errors"
 	"fmt"
 	"time"
 
@@ -69,7 +68,10 @@ func (bt *Testingbeat) Run(b *beat.Beat) error {
 				if err != nil {
 					return err
 				}
-				bt.send(b, testResult)
+				events := bt.resultToEvents(testResult)
+				for _, event := range events {
+					bt.client.Publish(event)
+				}
 				logger.Info("Event send")
 			}
 		}
@@ -84,17 +86,17 @@ func (bt *Testingbeat) getResults(event fsnotify.Event) ([]TestResult, error) {
 	case "junit":
 		return readJunitFile(event.Name).makeJunitReport(), nil
 	default:
-		return nil, errors.New("")
+		return nil, fmt.Errorf("configured type '%s' is not supported", bt.config.Type)
 	}
 }
 
-func (bt *Testingbeat) send(b *beat.Beat, result []TestResult) {
-	// Make a Map from a TestResult
+// Creates a list of events from TestResults
+func (bt *Testingbeat) resultToEvents(result []TestResult) []beat.Event {
+	var events []beat.Event
 	for _, value := range result {
-		event := beat.Event{
+		events = append(events, beat.Event{
 			Timestamp: time.Now(),
 			Fields: common.MapStr{
-				"type":      b.Info.Name,
 				"name":      value.Name,
 				"duration":  value.Duration,
 				"classname": value.Classname,
@@ -119,9 +121,9 @@ func (bt *Testingbeat) send(b *beat.Beat, result []TestResult) {
 					"body":  value.Failure.Body,
 				},
 			},
-		}
-		bt.client.Publish(event)
+		})
 	}
+	return events
 }
 
 // Stop stops testingbeat.

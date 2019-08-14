@@ -43,9 +43,9 @@ Probably stacktrace
 	},
 }
 
+var junitSuite = readJunitFile("../tests/ExampleTests.xml")
+
 func TestReadJunitFileSuite(t *testing.T) {
-	file := "../tests/ExampleTests.xml"
-	junitSuite := readJunitFile(file)
 	if junitSuite.Duration != expectedJunitSuite.Duration {
 		t.Errorf("Duration not correct, got '%f' - expected '%f'", junitSuite.Duration, expectedJunitSuite.Duration)
 	}
@@ -61,9 +61,6 @@ func TestReadJunitFileSuite(t *testing.T) {
 }
 
 func TestReadJunitFileTests(t *testing.T) {
-	file := "../tests/ExampleTests.xml"
-	junitSuite := readJunitFile(file)
-
 	for i, test := range junitSuite.TestCases {
 		expectedTest := expectedJunitSuite.TestCases[i]
 		if test.Name != expectedTest.Name {
@@ -85,9 +82,6 @@ func TestReadJunitFileTests(t *testing.T) {
 }
 
 func TestReadJunitFileFailure(t *testing.T) {
-	file := "../tests/ExampleTests.xml"
-	junitSuite := readJunitFile(file)
-
 	for i, test := range junitSuite.TestCases {
 		expectedTest := expectedJunitSuite.TestCases[i]
 		if test.Failure.Type != expectedTest.Failure.Type {
@@ -160,8 +154,7 @@ Probably stacktrace
 }
 
 func TestMakeJunitReportSuite(t *testing.T) {
-	file := "../tests/ExampleTests.xml"
-	testResults := readJunitFile(file).makeJunitReport()
+	testResults := junitSuite.makeJunitReport()
 	for i, test := range testResults {
 		expectedTest := expectedTestResults[i]
 		if test.Suite.Duration != expectedTest.Suite.Duration {
@@ -180,8 +173,7 @@ func TestMakeJunitReportSuite(t *testing.T) {
 }
 
 func TestMakeJunitReportTests(t *testing.T) {
-	file := "../tests/ExampleTests.xml"
-	testResults := readJunitFile(file).makeJunitReport()
+	testResults := junitSuite.makeJunitReport()
 	for i, test := range testResults {
 		expectedTest := expectedTestResults[i]
 		if test.Name != expectedTest.Name {
@@ -203,8 +195,7 @@ func TestMakeJunitReportTests(t *testing.T) {
 }
 
 func TestMakeJunitReportFailure(t *testing.T) {
-	file := "../tests/ExampleTests.xml"
-	testResults := readJunitFile(file).makeJunitReport()
+	testResults := junitSuite.makeJunitReport()
 
 	for i, test := range testResults {
 		expectedTest := expectedTestResults[i]

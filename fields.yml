@@ -2463,6 +2463,15 @@
         - name: link
           type: text
           required: true
+        - name: owner
+          type: text
+          required: true
+        - name: runner
+          type: text
+          required: true
+        - name: startedBy
+          type: text
+          required: true
 
     - name: suite
       type: group

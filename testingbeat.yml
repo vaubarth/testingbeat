@@ -5,10 +5,7 @@
 testingbeat:
   path: .
   type: junit
-  runid:
-  environment:
-  project:
-  link:
+  runconfig: ./runconfig.yml
 
 #================================ General =====================================
 

@@ -4,35 +4,46 @@
 package config
 
 import (
-	"math/rand"
-	"time"
+	"github.com/ghodss/yaml"
+	"io/ioutil"
+	"os"
 )
 
-func getRandomId() string {
-	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
+type TestRunConfig struct {
+	RunId       string `yaml:"run_id"`
+	Environment string `yaml:"environment"`
+	Project     string `yaml:"project"`
+	Link        string `yaml:"link"`
+	Owner       string `yaml:"owner"`
+	Runner      string `yaml:"runner"`
+	StartedBy   string `yaml:"started_by"`
+}
 
-	bytes := make([]byte, 10)
-	for i := range bytes {
-		bytes[i] = charset[seededRand.Intn(len(charset))]
+func GetTestRunConfig(fileName string) (TestRunConfig, error) {
+	runConfig := TestRunConfig{}
+
+	yamlFile, err := os.Open(fileName)
+	if err != nil {
+		return runConfig, err
 	}
-	return string(bytes)
+	defer yamlFile.Close()
+	byteValue, _ := ioutil.ReadAll(yamlFile)
+
+	err = yaml.Unmarshal(byteValue, &runConfig)
+	if err != nil {
+		return runConfig, err
+	}
+
+	return runConfig, nil
 }
 
 type Config struct {
-	Path        string `config:"path"`
-	Type        string `config:"type"`
-	RunId       string `config:"runid"`
-	Environment string `config:"environment"`
-	Project     string `config:"project"`
-	Link        string `config:"link"`
+	Path          string `config:"path"`
+	Type          string `config:"type"`
+	RunConfigFile string `config:"runconfig"`
 }
 
 var DefaultConfig = Config{
-	Path:        ".",
-	Type:        "junit",
-	RunId:       getRandomId(),
-	Environment: "",
-	Project:     "",
-	Link:        "",
+	Path: ".",
+	Type: "junit",
 }

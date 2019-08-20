@@ -3798,6 +3798,33 @@ required: True
 
 --
 
+*`metadata.owner`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`metadata.runner`*::
++
+--
+type: text
+
+required: True
+
+--
+
+*`metadata.startedBy`*::
++
+--
+type: text
+
+required: True
+
+--
+
 
 *`suite.duration`*::
 +

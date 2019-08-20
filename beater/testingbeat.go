@@ -39,7 +39,6 @@ func New(b *beat.Beat, cfg *common.Config) (beat.Beater, error) {
 // Run starts testingbeat.
 func (bt *Testingbeat) Run(b *beat.Beat) error {
 	logger.Info("testingbeat is running! Hit CTRL-C to stop it.")
-	logger.Info("RunId is: ", bt.config.RunId, "Environment is: ", bt.config.Environment)
 
 	var err error
 	bt.client, err = b.Publisher.Connect()
@@ -68,7 +67,11 @@ func (bt *Testingbeat) Run(b *beat.Beat) error {
 				if err != nil {
 					return err
 				}
-				events := bt.resultToEvents(testResult)
+				runConfig, err := config.GetTestRunConfig(bt.config.RunConfigFile)
+				if err != nil {
+					return err
+				}
+				events := bt.resultToEvents(testResult, runConfig)
 				for _, event := range events {
 					bt.client.Publish(event)
 				}
@@ -91,7 +94,7 @@ func (bt *Testingbeat) getResults(event fsnotify.Event) ([]TestResult, error) {
 }
 
 // Creates a list of events from TestResults
-func (bt *Testingbeat) resultToEvents(result []TestResult) []beat.Event {
+func (bt *Testingbeat) resultToEvents(result []TestResult, runConfig config.TestRunConfig) []beat.Event {
 	var events []beat.Event
 	for _, value := range result {
 		events = append(events, beat.Event{
@@ -104,10 +107,12 @@ func (bt *Testingbeat) resultToEvents(result []TestResult) []beat.Event {
 				"failed":    value.Failed,
 				"success":   value.Success,
 				"metadata": common.MapStr{
-					"runid":       bt.config.RunId,
-					"environment": bt.config.Environment,
-					"project":     bt.config.Project,
-					"link":        bt.config.Link,
+					"runid":       runConfig.RunId,
+					"environment": runConfig.Environment,
+					"project":     runConfig.Project,
+					"runner":      runConfig.Runner,
+					"owner":       runConfig.Owner,
+					"startedBy":   runConfig.StartedBy,
 				},
 				"suite": common.MapStr{
 					"duration": value.Suite.Duration,

@@ -100,31 +100,34 @@ func (bt *Testingbeat) resultToEvents(result []TestResult, runConfig config.Test
 		events = append(events, beat.Event{
 			Timestamp: time.Now(),
 			Fields: common.MapStr{
-				"name":      value.Name,
-				"duration":  value.Duration,
-				"classname": value.Classname,
-				"skipped":   value.Skipped,
-				"failed":    value.Failed,
-				"success":   value.Success,
-				"metadata": common.MapStr{
-					"runid":       runConfig.RunId,
-					"environment": runConfig.Environment,
-					"project":     runConfig.Project,
-					"runner":      runConfig.Runner,
-					"owner":       runConfig.Owner,
-					"startedBy":   runConfig.StartedBy,
+				"test": common.MapStr{
+					"name":      value.Name,
+					"duration":  value.Duration,
+					"classname": value.Classname,
+					"skipped":   value.Skipped,
+					"failed":    value.Failed,
+					"success":   value.Success,
+					"metadata": common.MapStr{
+						"runid":       runConfig.RunId,
+						"environment": runConfig.Environment,
+						"project":     runConfig.Project,
+						"runner":      runConfig.Runner,
+						"owner":       runConfig.Owner,
+						"startedBy":   runConfig.StartedBy,
+					},
+					"suite": common.MapStr{
+						"duration": value.Suite.Duration,
+						"name":     value.Suite.Name,
+						"stderr":   value.Suite.StdErr,
+						"stdout":   value.Suite.StdOut,
+					},
+					"failure": common.MapStr{
+						"type":  value.Failure.Type,
+						"title": value.Failure.Title,
+						"body":  value.Failure.Body,
+					},
 				},
-				"suite": common.MapStr{
-					"duration": value.Suite.Duration,
-					"name":     value.Suite.Name,
-					"stderr":   value.Suite.StdErr,
-					"stdout":   value.Suite.StdOut,
-				},
-				"failure": common.MapStr{
-					"type":  value.Failure.Type,
-					"title": value.Failure.Title,
-					"body":  value.Failure.Body,
-				},
+
 			},
 		})
 	}

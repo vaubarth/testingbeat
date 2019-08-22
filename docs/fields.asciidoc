@@ -3689,181 +3689,148 @@ alias to: process.executable
 None
 
 
-*`name`*::
+
+*`test.name`*::
 +
 --
-type: text
-
-required: True
+type: keyword
 
 --
 
-*`duration`*::
-+
---
-type: float
-
-required: True
-
---
-
-*`classname`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`skipped`*::
-+
---
-type: boolean
-
-required: True
-
---
-
-*`failed`*::
-+
---
-type: boolean
-
-required: True
-
---
-
-*`success`*::
-+
---
-type: boolean
-
-required: True
-
---
-
-*`stdout`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`stderr`*::
-+
---
-type: text
-
-required: True
-
---
-
-
-*`metadata.runid`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`metadata.environment`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`metadata.project`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`metadata.link`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`metadata.owner`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`metadata.runner`*::
-+
---
-type: text
-
-required: True
-
---
-
-*`metadata.startedBy`*::
-+
---
-type: text
-
-required: True
-
---
-
-
-*`suite.duration`*::
+*`test.duration`*::
 +
 --
 type: float
 
-required: True
+--
+
+*`test.classname`*::
++
+--
+type: keyword
 
 --
 
-*`suite.name`*::
+*`test.skipped`*::
++
+--
+type: boolean
+
+--
+
+*`test.failed`*::
++
+--
+type: boolean
+
+--
+
+*`test.success`*::
++
+--
+type: boolean
+
+--
+
+
+*`test.metadata.runid`*::
++
+--
+type: keyword
+
+--
+
+*`test.metadata.environment`*::
++
+--
+type: keyword
+
+--
+
+*`test.metadata.project`*::
++
+--
+type: keyword
+
+--
+
+*`test.metadata.link`*::
++
+--
+type: keyword
+
+--
+
+*`test.metadata.owner`*::
++
+--
+type: keyword
+
+--
+
+*`test.metadata.runner`*::
++
+--
+type: keyword
+
+--
+
+*`test.metadata.startedBy`*::
++
+--
+type: keyword
+
+--
+
+
+*`test.suite.duration`*::
++
+--
+type: float
+
+--
+
+*`test.suite.name`*::
++
+--
+type: keyword
+
+--
+
+*`test.suite.stdout`*::
 +
 --
 type: text
 
-required: True
-
 --
 
-
-*`failure.type`*::
+*`test.suite.stderr`*::
 +
 --
 type: text
+
+--
+
+
+*`test.failure.type`*::
++
+--
+type: keyword
 
 required: False
 
 --
 
-*`failure.title`*::
+*`test.failure.title`*::
 +
 --
-type: text
+type: keyword
 
 required: False
 
 --
 
-*`failure.body`*::
+*`test.failure.body`*::
 +
 --
 type: text

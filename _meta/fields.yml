@@ -2,75 +2,61 @@
   title: testingbeat
   description:
   fields:
-    - name: name
-      type: text
-      required: true
-    - name: duration
-      type: float
-      required: true
-    - name: classname
-      type: text
-      required: true
-    - name: skipped
-      type: boolean
-      required: true
-    - name: failed
-      type: boolean
-      required: true
-    - name: success
-      type: boolean
-      required: true
-    - name: stdout
-      type: text
-      required: true
-    - name: stderr
-      type: text
-      required: true
-
-    - name: metadata
+    - name: test
       type: group
       fields:
-        - name: runid
-          type: text
-          required: true
-        - name: environment
-          type: text
-          required: true
-        - name: project
-          type: text
-          required: true
-        - name: link
-          type: text
-          required: true
-        - name: owner
-          type: text
-          required: true
-        - name: runner
-          type: text
-          required: true
-        - name: startedBy
-          type: text
-          required: true
+      - name: name
+        type: keyword
+      - name: duration
+        type: float
+      - name: classname
+        type: keyword
+      - name: skipped
+        type: boolean
+      - name: failed
+        type: boolean
+      - name: success
+        type: boolean
 
-    - name: suite
-      type: group
-      fields:
-        - name: duration
-          type: float
-          required: true
-        - name: name
-          type: text
-          required: true
+      - name: metadata
+        type: group
+        fields:
+          - name: runid
+            type: keyword
+          - name: environment
+            type: keyword
+          - name: project
+            type: keyword
+          - name: link
+            type: keyword
+          - name: owner
+            type: keyword
+          - name: runner
+            type: keyword
+          - name: startedBy
+            type: keyword
 
-    - name: failure
-      type: group
-      fields:
-        - name: type
-          type: text
-          required: false
-        - name: title
-          type: text
-          required: false
-        - name: body
-          type: text
-          required: false
+      - name: suite
+        type: group
+        fields:
+          - name: duration
+            type: float
+          - name: name
+            type: keyword
+          - name: stdout
+            type: text
+          - name: stderr
+            type: text
+
+      - name: failure
+        type: group
+        fields:
+          - name: type
+            type: keyword
+            required: false
+          - name: title
+            type: keyword
+            required: false
+          - name: body
+            type: text
+            required: false

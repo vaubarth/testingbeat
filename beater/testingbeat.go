@@ -107,6 +107,7 @@ func (bt *Testingbeat) resultToEvents(result []TestResult, runConfig config.Test
 					"skipped":   value.Skipped,
 					"failed":    value.Failed,
 					"success":   value.Success,
+					"state":     value.State,
 					"metadata": common.MapStr{
 						"runid":       runConfig.RunId,
 						"environment": runConfig.Environment,
@@ -114,6 +115,7 @@ func (bt *Testingbeat) resultToEvents(result []TestResult, runConfig config.Test
 						"runner":      runConfig.Runner,
 						"owner":       runConfig.Owner,
 						"startedBy":   runConfig.StartedBy,
+						"link":        runConfig.Link,
 					},
 					"suite": common.MapStr{
 						"duration": value.Suite.Duration,
@@ -127,7 +129,6 @@ func (bt *Testingbeat) resultToEvents(result []TestResult, runConfig config.Test
 						"body":  value.Failure.Body,
 					},
 				},
-
 			},
 		})
 	}

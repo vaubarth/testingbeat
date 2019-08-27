@@ -10,13 +10,13 @@ import (
 )
 
 type TestRunConfig struct {
-	RunId       string `yaml:"run_id"`
+	RunId       string `yaml:"runid"`
 	Environment string `yaml:"environment"`
 	Project     string `yaml:"project"`
 	Link        string `yaml:"link"`
 	Owner       string `yaml:"owner"`
 	Runner      string `yaml:"runner"`
-	StartedBy   string `yaml:"started_by"`
+	StartedBy   string `yaml:"startedby"`
 }
 
 func GetTestRunConfig(fileName string) (TestRunConfig, error) {

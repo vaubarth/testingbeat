@@ -3732,6 +3732,13 @@ type: boolean
 
 --
 
+*`test.state`*::
++
+--
+type: keyword
+
+--
+
 
 *`test.metadata.runid`*::
 +

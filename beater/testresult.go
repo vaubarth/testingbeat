@@ -8,6 +8,7 @@ type TestResult struct {
 	Skipped   bool
 	Failed    bool
 	Success   bool
+	State     string
 	Failure   Failure
 }
 

@@ -80,6 +80,7 @@ var expectedTestResults = []TestResult{
 		Skipped:   false,
 		Failed:    false,
 		Success:   true,
+		State:     "PASSED",
 		Failure: Failure{
 			Title: "",
 			Type:  "",
@@ -94,6 +95,7 @@ var expectedTestResults = []TestResult{
 		Skipped:   false,
 		Failed:    true,
 		Success:   false,
+		State:     "FAILED",
 		Failure: Failure{
 			Title: "1 is not 2",
 			Type:  "org.scalatest.exceptions.TestFailedException",
@@ -113,6 +115,7 @@ Probably stacktrace
 		Skipped:   true,
 		Failed:    false,
 		Success:   false,
+		State:     "SKIPPED",
 		Failure: Failure{
 			Title: "",
 			Type:  "",

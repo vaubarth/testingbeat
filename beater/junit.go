@@ -68,6 +68,7 @@ func (junitResult JunitTestSuite) makeJunitReport() []TestResult {
 			Skipped:   false,
 			Failed:    false,
 			Success:   false,
+			State:     "",
 			Failure: Failure{
 				Title: test.Failure.Message,
 				Type:  test.Failure.Type,
@@ -77,10 +78,13 @@ func (junitResult JunitTestSuite) makeJunitReport() []TestResult {
 		// Set test state boolean values
 		if test.Skipped != nil {
 			results[i].Skipped = true
+			results[i].State = "SKIPPED"
 		} else if test.Failure.Type != "" {
 			results[i].Failed = true
+			results[i].State = "FAILED"
 		} else {
 			results[i].Success = true
+			results[i].State = "PASSED"
 		}
 	}
 

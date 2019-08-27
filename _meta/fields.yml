@@ -17,6 +17,8 @@
         type: boolean
       - name: success
         type: boolean
+      - name: state
+        type: keyword
 
       - name: metadata
         type: group

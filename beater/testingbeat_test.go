@@ -16,6 +16,7 @@ var testResults = []TestResult{
 		Skipped:   true,
 		Failed:    false,
 		Success:   false,
+		State:     "SKIPPED",
 		Suite: Suite{
 			Name:     "suitename",
 			Duration: 2.2,
@@ -31,45 +32,55 @@ var testResults = []TestResult{
 }
 
 var expectedFieldsMap = common.MapStr{
-	"name":      "testname",
-	"duration":  3.5,
-	"classname": "classname",
-	"skipped":   true,
-	"failed":    false,
-	"success":   false,
-	"metadata": common.MapStr{
-		"runid":       "runid",
-		"environment": "env",
-		"project":     "project",
-		"link":        "link",
-	},
-	"suite": common.MapStr{
-		"duration": 2.2,
-		"name":     "suitename",
-		"stderr":   "stderr",
-		"stdout":   "stdout",
-	},
-	"failure": common.MapStr{
-		"type":  "failtype",
-		"title": "failtitle",
-		"body":  "failbody",
+	"test": common.MapStr{
+		"name":      "testname",
+		"duration":  3.5,
+		"classname": "classname",
+		"skipped":   true,
+		"failed":    false,
+		"success":   false,
+		"state":     "SKIPPED",
+		"metadata": common.MapStr{
+			"runid":       "runid",
+			"environment": "env",
+			"project":     "project",
+			"link":        "link",
+			"owner":       "owner",
+			"startedBy":   "startedBy",
+			"runner":      "runner",
+		},
+		"suite": common.MapStr{
+			"duration": 2.2,
+			"name":     "suitename",
+			"stderr":   "stderr",
+			"stdout":   "stdout",
+		},
+		"failure": common.MapStr{
+			"type":  "failtype",
+			"title": "failtitle",
+			"body":  "failbody",
+		},
 	},
 }
 
 var bt = Testingbeat{
 	done: nil,
 	config: config.Config{
-		Path:        "",
-		Type:        "",
-		RunId:       "runid",
-		Environment: "env",
-		Project:     "project",
-		Link:        "link",
+		Path: "",
+		Type: "",
 	},
 	client: nil,
 }
-
-var events = bt.resultToEvents(testResults)
+var runConfig = config.TestRunConfig{
+	RunId:       "runid",
+	Environment: "env",
+	Project:     "project",
+	Link:        "link",
+	Owner:       "owner",
+	Runner:      "runner",
+	StartedBy:   "startedBy",
+}
+var events = bt.resultToEvents(testResults, runConfig)
 
 func TestResultToEvents(t *testing.T) {
 	if len(events) != 1 {
@@ -77,6 +88,6 @@ func TestResultToEvents(t *testing.T) {
 	}
 }
 
-func TestResultToEvents1(t *testing.T) {
+func TestResultToEventsFields(t *testing.T) {
 	td.Cmp(t, events[0].Fields, expectedFieldsMap)
 }

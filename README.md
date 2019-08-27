@@ -2,7 +2,10 @@
 
 Testingbeat allows reading test result files (e.g. Junit xml files) and send them to elasticsearch.
 
-This is a placeholder
+## Using Testingbeat
+
+tbd
+
 
 ## Building Testingbeat
 

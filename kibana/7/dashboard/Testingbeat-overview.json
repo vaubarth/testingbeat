@@ -1,0 +1,143 @@
+{
+  "objects": [
+    {
+      "attributes": {
+        "description": "",
+        "hits": 0,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+        },
+        "optionsJSON": "{\"useMargins\":true,\"hidePanelTitles\":false}",
+        "panelsJSON": "[{\"gridData\":{\"x\":0,\"y\":0,\"w\":13,\"h\":16,\"i\":\"1\"},\"version\":\"7.3.0\",\"panelIndex\":\"1\",\"embeddableConfig\":{},\"panelRefName\":\"panel_0\"},{\"gridData\":{\"x\":13,\"y\":0,\"w\":35,\"h\":25,\"i\":\"2\"},\"version\":\"7.3.0\",\"panelIndex\":\"2\",\"embeddableConfig\":{},\"panelRefName\":\"panel_1\"},{\"gridData\":{\"x\":0,\"y\":16,\"w\":13,\"h\":9,\"i\":\"3\"},\"version\":\"7.3.0\",\"panelIndex\":\"3\",\"embeddableConfig\":{},\"panelRefName\":\"panel_2\"}]",
+        "timeRestore": false,
+        "title": "Test overview",
+        "version": 1
+      },
+      "id": "fdde49a0-c8da-11e9-ab3e-3767cfc0a56f",
+      "migrationVersion": {
+        "dashboard": "7.3.0"
+      },
+      "references": [
+        {
+          "id": "095032a0-c8d9-11e9-ab3e-3767cfc0a56f",
+          "name": "panel_0",
+          "type": "visualization"
+        },
+        {
+          "id": "a8552990-c8da-11e9-ab3e-3767cfc0a56f",
+          "name": "panel_1",
+          "type": "search"
+        },
+        {
+          "id": "b9cb4410-c8db-11e9-ab3e-3767cfc0a56f",
+          "name": "panel_2",
+          "type": "visualization"
+        }
+      ],
+      "type": "dashboard",
+      "updated_at": "2019-08-27T15:04:15.230Z",
+      "version": "Wzg3LDFd"
+    },
+    {
+      "attributes": {
+        "description": "",
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+        },
+        "title": "Drilldown controls",
+        "uiStateJSON": "{}",
+        "version": 1,
+        "visState": "{\"title\":\"Drilldown controls\",\"type\":\"input_control_vis\",\"params\":{\"controls\":[{\"id\":\"1566916853804\",\"fieldName\":\"test.metadata.project\",\"parent\":\"\",\"label\":\"Project\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"dynamicOptions\":true,\"size\":5,\"order\":\"desc\"},\"indexPatternRefName\":\"control_0_index_pattern\"},{\"id\":\"1566916879591\",\"fieldName\":\"test.metadata.runid\",\"parent\":\"\",\"label\":\"RunId\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"dynamicOptions\":true,\"size\":5,\"order\":\"desc\"},\"indexPatternRefName\":\"control_1_index_pattern\"},{\"id\":\"1566916888093\",\"fieldName\":\"test.suite.name\",\"parent\":\"\",\"label\":\"Suite\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"dynamicOptions\":true,\"size\":5,\"order\":\"desc\"},\"indexPatternRefName\":\"control_2_index_pattern\"},{\"id\":\"1566916833487\",\"fieldName\":\"test.classname\",\"parent\":\"\",\"label\":\"Classname\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"dynamicOptions\":true,\"size\":5,\"order\":\"desc\"},\"indexPatternRefName\":\"control_3_index_pattern\"}],\"updateFiltersOnChange\":true,\"useTimeFilter\":false,\"pinFilters\":false},\"aggs\":[]}"
+      },
+      "id": "095032a0-c8d9-11e9-ab3e-3767cfc0a56f",
+      "migrationVersion": {
+        "visualization": "7.3.0"
+      },
+      "references": [
+        {
+          "id": "testingbeat-*",
+          "name": "control_0_index_pattern",
+          "type": "index-pattern"
+        },
+        {
+          "id": "testingbeat-*",
+          "name": "control_1_index_pattern",
+          "type": "index-pattern"
+        },
+        {
+          "id": "testingbeat-*",
+          "name": "control_2_index_pattern",
+          "type": "index-pattern"
+        },
+        {
+          "id": "testingbeat-*",
+          "name": "control_3_index_pattern",
+          "type": "index-pattern"
+        }
+      ],
+      "type": "visualization",
+      "updated_at": "2019-08-27T15:03:09.333Z",
+      "version": "Wzg1LDFd"
+    },
+    {
+      "attributes": {
+        "columns": [
+          "test.state",
+          "test.name"
+        ],
+        "description": "",
+        "hits": 0,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"kuery\",\"query\":\"\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+        },
+        "sort": [
+          "@timestamp",
+          "desc"
+        ],
+        "title": "Test list",
+        "version": 1
+      },
+      "id": "a8552990-c8da-11e9-ab3e-3767cfc0a56f",
+      "migrationVersion": {
+        "search": "7.0.0"
+      },
+      "references": [
+        {
+          "id": "testingbeat-*",
+          "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+          "type": "index-pattern"
+        }
+      ],
+      "type": "search",
+      "updated_at": "2019-08-27T17:22:22.377Z",
+      "version": "Wzk1LDFd"
+    },
+    {
+      "attributes": {
+        "description": "",
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+        },
+        "title": "State filter",
+        "uiStateJSON": "{}",
+        "version": 1,
+        "visState": "{\"title\":\"State filter\",\"type\":\"input_control_vis\",\"params\":{\"controls\":[{\"id\":\"1566918129655\",\"fieldName\":\"test.state\",\"parent\":\"\",\"label\":\"Result\",\"type\":\"list\",\"options\":{\"type\":\"terms\",\"multiselect\":true,\"dynamicOptions\":false,\"size\":5,\"order\":\"desc\"},\"indexPatternRefName\":\"control_0_index_pattern\"}],\"updateFiltersOnChange\":true,\"useTimeFilter\":false,\"pinFilters\":false},\"aggs\":[]}"
+      },
+      "id": "b9cb4410-c8db-11e9-ab3e-3767cfc0a56f",
+      "migrationVersion": {
+        "visualization": "7.3.0"
+      },
+      "references": [
+        {
+          "id": "testingbeat-*",
+          "name": "control_0_index_pattern",
+          "type": "index-pattern"
+        }
+      ],
+      "type": "visualization",
+      "updated_at": "2019-08-27T17:20:08.010Z",
+      "version": "WzkwLDFd"
+    }
+  ],
+  "version": "7.3.0"
+}

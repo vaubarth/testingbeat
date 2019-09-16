@@ -1,13 +1,46 @@
 # Testingbeat
+Testingbeat reads test result files (e.g. Junit xml files) and sends them to elasticsearch. It also provides out of the box dashboards. 
 
-Testingbeat allows reading test result files (e.g. Junit xml files) and send them to elasticsearch.
+## Usage
+Testingbeat can be configured to watch a folder for new files which it then parses with a defined test result parser (currently only junit is available).
 
-## Using Testingbeat
+Junit files are broken up to create one document per test case instead of the junit model of one document (file) per suite/group.
+You can also specify additional metadata that will be added to each test result document.
 
-tbd
+### Setup
+Testingbeat ships with a default index-pattern and dashboards for Kibana. To automatically add them to your Kibana installation first add your elastic stack deployment including username and password to `testingbeat.yml`
+Then you can run `testingbeat setup`
+
+![Test overview dashboard](docs/dash-testoverview.png "Test overview dashboard")
+
+![Historical drill down dashboard](docs/dash-history.png "Historical drill down dashboard")
+
+### Configuration
+Testingbeat is primarily configured via `testingbeat.yml`. 
+There is an additional file `runconfig.yml` that contains optional fields of metadata that will be added to a test result.
+
+#### testingbeat.yml
+Additionally to the default fields of any Beat there are three fields specific to Testingbeat:
+- `path` Specifies the path to a folder where Testingbeat looks for created files
+- `type` The type of testresult file that should get parsed, currently only `junit` is supported
+- `runconfig` Path to the `runconfig.yml` config file (see below)
+
+#### runconfig.yml
+In addition to the values read from test result files Testingbeat will read additional, project specific variables from the `runconfig.yml` file.
+`runconfig.yml` is read before every result file (like an xml Junit file) and adds the variables to the test result that will be send to Elasticsearch.
+This means you can change the values while Testingbeat is running and any changes will be picked up - this can be useful e.g. when you want to change some metadata on different stages of our CI process. 
+
+Currently the following fields are supported:
+- `runid` This field is meant to contain a unique id identifying a single test execution (like a run id of a Jenkins execution) 
+- `environment` Meant to specify an execution environment, typically something like `staging` or `development`
+- `project` Can be used to specify an arbitrary project name, which is useful for grouping results
+- `link` A full link to e.g. the execution results (like a CI job that executed the tests) 
+- `runner` Meant to spcify how the test was executed, for example could be `local` or `jenkins`
+- `owner` Can be used to specify an owner of the tests or execution, this could be a team or a person
+- `startedby` Meant to specify who or what started the tests 
 
 
-## Building Testingbeat
+## Development
 
 Ensure that this folder is at the following location:
 `${GOPATH}/src/github.com/vaubarth/testingbeat`

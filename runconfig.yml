@@ -1,7 +1,7 @@
-runid:
-environment:
-project:
-link:
-runner:
-owner:
-startedby:
+runid: {{.TB_RUN_ID}}
+environment: {{.TB_ENVIRONMENT}}
+project: {{.TB_PROJECT}}
+link: {{.TB_LINK}}
+runner: {{.TB_OWNER}}
+owner: {{.TB_RUNNER}}
+startedby: {{.TB_STARTED_BY}}

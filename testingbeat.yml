@@ -17,12 +17,6 @@ testingbeat:
 # transaction published.
 #tags: ["service-X", "web-tier"]
 
-# Optional fields that you can specify to add additional information to the
-# output.
-#fields:
-#  env: staging
-
-
 #============================== Dashboards =====================================
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the

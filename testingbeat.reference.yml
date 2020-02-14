@@ -11,12 +11,6 @@
 # logical properties.
 #tags: ["service-X", "web-tier"]
 
-# Optional fields that you can specify to add additional information to the
-# output. Fields can be scalar values, arrays, dictionaries, or any nested
-# combination of these.
-#fields:
-#  env: staging
-
 # If this option is set to true, the custom fields are stored as top-level
 # fields in the output document instead of being grouped under a fields
 # sub-dictionary. Default is false.
@@ -958,7 +952,7 @@ setup.template.settings:
 #setup.ilm.enabled: auto
 
 # Set the prefix used in the index lifecycle write alias name. The default alias
-# name is 'testingbeat-%{[agent.version]}'. 
+# name is 'testingbeat-%{[agent.version]}'.
 #setup.ilm.rollover_alias: "testingbeat"
 
 # Set the rollover index pattern. The default is "%{now/d}-000001".

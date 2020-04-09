@@ -61,8 +61,8 @@ func (bt *Testingbeat) Run(b *beat.Beat) error {
 			logger.Error(err)
 		case event := <-watcher.Events:
 			// We only care if a file was created
-			if event.Op == fsnotify.Create {
-				logger.Info("New file was created: ", event.Name)
+			if event.Op == fsnotify.Write {
+				logger.Info("File was written: ", event.Name)
 				testResult, err := bt.getResults(event)
 				if err != nil {
 					return err
